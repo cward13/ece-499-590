@@ -1,0 +1,7 @@
+all: run
+
+run: Colordetection2       
+Colordetection2: Colordetection2.cpp
+	 g++ Colordetection2.cpp -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_objdetect -o Colordetection2
+
+

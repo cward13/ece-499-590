@@ -1,0 +1,27 @@
+#include "opencv2/opencv.hpp"
+#include <stdio.h>
+#include <iostream>
+using namespace cv;
+int main(int argc, char *argv[])
+{
+    Mat frame;
+    namedWindow("video", 1);
+    VideoCapture cap(0);
+    while ( cap.isOpened() )
+    {
+        cap >> frame;
+	Mat greyout;
+	Mat blurdst;
+	Mat resizer;
+	cvtColor(frame, greyout, CV_RGB2GRAY);
+	printf("%d",frame(1));
+	resize(greyout, resizer, greyout.size(), .5, .5, INTER_NEAREST);
+	blur( resizer, blurdst, Size( 10, 10));
+	if(frame.empty()) break;
+        imshow("video", blurdst);
+        if(waitKey(30) >= 0) break;
+    }
+
+    return 0;
+}
+
